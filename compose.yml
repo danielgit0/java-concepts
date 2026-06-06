@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:18.4-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: javalin
+    ports:
+      - "5432:5432"
+    networks:
+      - javalin
+
+networks:
+  javalin:
+    driver: bridge
