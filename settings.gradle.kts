@@ -1,1 +1,1 @@
-rootProject.name = "plain-java-concurrency"
+rootProject.name = "java-concepts"

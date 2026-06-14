@@ -1,4 +1,4 @@
-# Plain Java Concurrency
+# Java Concepts
 
 > **DISCLAIMER 1**: The files under docs that describe problems and the proposed solutions were generated with Claude, DeepSeek, ChatGPT and Gemini as a guideline to study.
 > During the actual implementation it was discovered that some test cases were irrelevant as they
