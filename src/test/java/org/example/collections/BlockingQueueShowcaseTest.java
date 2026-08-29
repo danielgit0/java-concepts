@@ -2,6 +2,7 @@ package org.example.collections;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executors;
 import org.junit.jupiter.api.Test;
 
 public class BlockingQueueShowcaseTest {
@@ -55,5 +56,55 @@ public class BlockingQueueShowcaseTest {
     producer.interrupt();
     consumer.interrupt();
     // Queue size will fluctuate but never exceed 5 due to backpressure
+  }
+
+  @Test
+  public void testBlockingQueueWithVirtualThreads() throws InterruptedException {
+    System.out.println("\n--- BLOCKINGQUEUE EXAMPLE ---");
+
+    // PROBLEM: Producer-consumer pattern with different speeds.
+    // Producer is faster than consumer - need backpressure to prevent OOM.
+
+    // SOLUTION: BlockingQueue with bounded capacity
+    BlockingQueue<String> queue = new ArrayBlockingQueue<>(5);
+
+    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+      var producer =
+          executor.submit(
+              () -> {
+                try {
+                  for (int i = 1; i <= 10; i++) {
+                    String transaction = "TX" + i;
+                    queue.put(transaction); // Blocks if queue is full
+                    System.out.println(
+                        "Produced: " + transaction + " (queue size: " + queue.size() + ")");
+
+                    Thread.sleep(100); // Produce every 100ms
+                  }
+                } catch (InterruptedException e) {
+                  throw new RuntimeException(e);
+                }
+              });
+
+      var consumer =
+          executor.submit(
+              () -> {
+                try {
+                  while (true) {
+                    String transaction = queue.take(); // Blocks if queue empty
+                    System.out.println("  Consumed: " + transaction);
+                    Thread.sleep(300); // Process takes 300ms (slower than producer)
+                  }
+                } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+                }
+              });
+
+      Thread.sleep(4000); // Let it run for 4 seconds
+
+      // Cancel the tasks
+      producer.cancel(true);
+      consumer.cancel(true);
+    } // Executor automatically closes, waiting for tasks to complete
   }
 }
