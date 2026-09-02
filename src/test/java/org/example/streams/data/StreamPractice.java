@@ -39,17 +39,60 @@ public class StreamPractice {
 
   public static List<Order> ORDERS =
       Arrays.asList(
-          new Order("ORD001", "John Doe", 250.50, OrderStatus.DELIVERED, LocalDate.of(2026, 8, 15)),
           new Order(
-              "ORD002", "Jane Watson", 1200.00, OrderStatus.SHIPPED, LocalDate.of(2026, 8, 28)),
-          new Order("ORD003", "John Doe", 45.99, OrderStatus.PENDING, LocalDate.of(2026, 8, 30)),
+              "ORD001",
+              "John Doe",
+              250.50,
+              OrderStatus.DELIVERED,
+              LocalDate.of(2026, 8, 15),
+              List.of("Monitor", "Mouse")),
           new Order(
-              "ORD004", "Bob Vance", 850.00, OrderStatus.CANCELLED, LocalDate.of(2026, 8, 10)),
+              "ORD002",
+              "Jane Watson",
+              1200.00,
+              OrderStatus.SHIPPED,
+              LocalDate.of(2026, 8, 28),
+              List.of("Laptop", "Mouse Pad")),
           new Order(
-              "ORD005", "Alice Cooper", 99.90, OrderStatus.DELIVERED, LocalDate.of(2026, 7, 22)),
+              "ORD003",
+              "John Doe",
+              45.99,
+              OrderStatus.PENDING,
+              LocalDate.of(2026, 8, 30),
+              List.of("Keyboard", "Mouse")),
           new Order(
-              "ORD006", "Jane Watson", 310.00, OrderStatus.DELIVERED, LocalDate.of(2026, 8, 05)),
+              "ORD004",
+              "Bob Vance",
+              850.00,
+              OrderStatus.CANCELLED,
+              LocalDate.of(2026, 8, 10),
+              List.of("Desk Chair", "Monitor")),
           new Order(
-              "ORD007", "Charlie Green", 15.25, OrderStatus.PENDING, LocalDate.of(2026, 8, 31)),
-          new Order("ORD008", "Bob Vance", 620.00, OrderStatus.SHIPPED, LocalDate.of(2026, 8, 29)));
+              "ORD005",
+              "Alice Cooper",
+              99.90,
+              OrderStatus.DELIVERED,
+              LocalDate.of(2026, 7, 22),
+              List.of("Headphones")),
+          new Order(
+              "ORD006",
+              "Jane Watson",
+              310.00,
+              OrderStatus.DELIVERED,
+              LocalDate.of(2026, 8, 5),
+              List.of("Monitor", "HDMI Cable")),
+          new Order(
+              "ORD007",
+              "Charlie Green",
+              15.25,
+              OrderStatus.PENDING,
+              LocalDate.of(2026, 8, 31),
+              List.of("USB Drive")),
+          new Order(
+              "ORD008",
+              "Bob Vance",
+              620.00,
+              OrderStatus.SHIPPED,
+              LocalDate.of(2026, 8, 29),
+              List.of("Laptop")));
 }
