@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class MapAndMapToTest {
 
   @Test
-  public void fibonacciStream() {
+  public void extractNamesAndComputeBonus() {
     IO.println("########### Example: map and mapToX ###########");
     List<String> names = EMPLOYEES.stream().map(Employee::name).toList();
 
@@ -32,6 +32,8 @@ public class MapAndMapToTest {
 
   @Test
   public void convertUsdToEur() {
+    IO.println(
+        "########### Ex02:  Given a list of prices in USD, use map to convert them all to EUR (rate 0.92) ###########");
     List<BigDecimal> usdPrices =
         List.of(
             BigDecimal.valueOf(19.5),
